@@ -31,7 +31,7 @@ export default function MissionSection() {
               Building bridges that outlast the trip
             </h2>
             <p className="text-[#3D6B8C] text-lg leading-relaxed mb-6">
-              The Bridge of Light Youth Expedition Project is a Singaporean volunteer initiative
+              The Planet Pages Laos Youth Expedition Project is a Singaporean volunteer initiative
               that partners with rural communities in Laos to co-create lasting change. Since 2018,
               we've sent interdisciplinary teams of university students to work alongside Laotian
               villagers on education, infrastructure, and clean-water projects.

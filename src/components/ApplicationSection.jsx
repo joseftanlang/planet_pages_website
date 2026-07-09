@@ -207,7 +207,7 @@ export default function ApplicationSection() {
                     <p className="text-white/40 text-sm mb-6">Why does this expedition call to you?</p>
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-white/70 text-sm mb-1.5">Why do you want to join Bridge of Light? *</label>
+                        <label className="block text-white/70 text-sm mb-1.5">Why do you want to join Planet Pages Laos? *</label>
                         <textarea
                           value={form.motivation}
                           onChange={(e) => update("motivation", e.target.value)}
