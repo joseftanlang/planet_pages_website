@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { label: "Mission", path: "/mission" },
   { label: "Projects", path: "/projects" },
   { label: "Expedition", path: "/expedition" },
-  { label: "Donate", path: "/donate" },
+  { label: "Support Us", path: "/donate" },
 ];
 
 export default function Navbar() {
