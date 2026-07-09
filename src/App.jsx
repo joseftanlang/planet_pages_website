@@ -7,6 +7,12 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
+import Mission from './pages/Mission';
+import Projects from './pages/Projects';
+import Expedition from './pages/Expedition';
+import Donate from './pages/Donate';
+import Apply from './pages/Apply';
+import Layout from './components/Layout';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -35,7 +41,14 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/expedition" element={<Expedition />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/apply" element={<Apply />} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

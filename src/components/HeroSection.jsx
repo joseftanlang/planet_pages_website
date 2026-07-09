@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const SG_IMG = "https://media.base44.com/images/public/6a4f119cb0e4023a4c028f3f/6fa84fa77_generated_0fd02299.png";
@@ -41,7 +42,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-[#0E8A57] font-body text-sm font-semibold tracking-[0.2em] uppercase mb-6"
+          className="inline-block bg-green-100 text-[#0E8A57] px-3 py-1 rounded-full font-body text-sm font-semibold tracking-[0.2em] uppercase mb-6"
         >
           Singapore → Laos Youth Expedition 2026
         </motion.p>
@@ -50,7 +51,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight mb-6"
+          className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] mb-6"
         >
           Two Nations. <br className="hidden sm:block" />
           One Purpose.
@@ -59,9 +60,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="max-w-2xl mx-auto text-white/85 text-lg md:text-xl mb-10 font-light"
+          className="max-w-2xl mx-auto text-white text-lg md:text-xl font-normal drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-10"
         >
-          Bridge the distance between Singapore's innovation and Laos' enduring spirit.
+          Bridge the distance between Singapore's innovation and Laos' enduring spirit. <br className="hidden sm:block" /> <br className="hidden sm:block" />
           Build schools, empower communities, and discover the leader within.
         </motion.p>
         <motion.div
@@ -70,18 +71,18 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.45 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a
-            href="#apply"
+          <Link
+            to="/apply"
             className="inline-flex items-center justify-center px-8 py-4 bg-[#0E8A57] text-white font-semibold rounded-full hover:bg-[#0A7045] transition-colors text-base min-h-[44px] shadow-lg shadow-[#0E8A57]/30"
           >
             Join the Expedition
-          </a>
-          <a
-            href="#projects"
+          </Link>
+          <Link
+            to="/projects"
             className="inline-flex items-center justify-center px-8 py-4 bg-white/15 text-white font-semibold rounded-full hover:bg-white/25 transition-colors text-base min-h-[44px] backdrop-blur-sm border border-white/20"
           >
             Explore Our Impact
-          </a>
+          </Link>
         </motion.div>
 
         {/* Stats bar */}
@@ -92,10 +93,7 @@ export default function HeroSection() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
         >
           {[
-            { value: "8", label: "Years Running" },
-            { value: "320+", label: "Volunteers Sent" },
-            { value: "12", label: "Villages Reached" },
-            { value: "5,000+", label: "Lives Impacted" },
+            { },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-heading font-bold text-white">{stat.value}</div>
@@ -103,7 +101,7 @@ export default function HeroSection() {
             </div>
           ))}
         </motion.div>
-      </div>
+      </div> 
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">

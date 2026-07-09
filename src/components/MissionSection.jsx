@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart, BookOpen, Users, Globe } from "lucide-react";
 
@@ -7,11 +7,56 @@ const COMMUNITY_IMG = "https://media.base44.com/images/public/6a4f119cb0e4023a4c
 const VALUES = [
   { icon: Heart, title: "Empathy First", desc: "We lead with understanding, not assumption. Every project starts by listening to the community's own vision." },
   { icon: BookOpen, title: "Sustainable Learning", desc: "We build capacity, not dependency. Our education programmes train local teachers to carry forward." },
-  { icon: Users, title: "Youth Leadership", desc: "Volunteers don't just serve — they grow. Our programme shapes future civic leaders through immersive fieldwork." },
+  { icon: Users, title: "Youth Leadership", desc: "Volunteers don't just serve, they also grow. Our programme shapes future civic leaders through immersive fieldwork." },
   { icon: Globe, title: "Cultural Exchange", desc: "The bridge goes both ways. Singaporean volunteers gain as much wisdom from Laos as they bring." },
 ];
 
 export default function MissionSection() {
+  // Set target date: 13th December 2026
+  const TARGET_DATE = new Date("2026-12-13T00:00:00").getTime();
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isExpired: false
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const difference = TARGET_DATE - now;
+
+      if (difference <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        isExpired: false
+      });
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, [TARGET_DATE]);
+
+  const formatNumber = (num) => String(num).padStart(2, "0");
+
+  const timeBlocks = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: formatNumber(timeLeft.hours) },
+    { label: "Mins", value: formatNumber(timeLeft.minutes) },
+    { label: "Secs", value: formatNumber(timeLeft.seconds) },
+  ];
+
   return (
     <section id="mission" className="py-24 md:py-32 bg-[#FDFCF8]" aria-labelledby="mission-heading">
       <div className="max-w-7xl mx-auto px-6">
@@ -31,15 +76,15 @@ export default function MissionSection() {
               Building bridges that outlast the trip
             </h2>
             <p className="text-[#3D6B8C] text-lg leading-relaxed mb-6">
-              The Bridge of Light Youth Expedition Project is a Singaporean volunteer initiative
-              that partners with rural communities in Laos to co-create lasting change. Since 2018,
-              we've sent interdisciplinary teams of university students to work alongside Laotian
+              The Planet Pages Laos Youth Expedition Project is a Singaporean volunteer initiative
+              that partners with rural communities in Laos to co-create lasting change. 2026 marks the first year of the programme that
+              we are sending interdisciplinary teams of tertiary-level youths to work alongside Laotian
               villagers on education, infrastructure, and clean-water projects.
             </p>
             <p className="text-[#3D6B8C] text-lg leading-relaxed">
               This isn't voluntourism. It's a structured, community-led programme where every
               project is identified, designed, and sustained by the people it serves. We provide
-              the hands, the funding, and the technical skill — they provide the knowledge,
+              the hands, the funding, and the technical skill while they provide the knowledge,
               the vision, and the cultural grounding.
             </p>
           </motion.div>
@@ -67,24 +112,60 @@ export default function MissionSection() {
         </div>
 
         {/* Values grid */}
-        <div className="mt-24 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {VALUES.map((val, i) => (
-            <motion.div
-              key={val.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-xl p-6 border border-[#3D6B8C]/10 hover:shadow-lg transition-shadow"
-            >
-              <div className="w-12 h-12 rounded-full bg-[#0E8A57]/10 flex items-center justify-center mb-4">
-                <val.icon size={22} className="text-[#0E8A57]" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-16 pb-6">
+          {VALUES.map((item, index) => {
+            const IconComponent = item.icon;
+            
+            return (
+              <div 
+                key={index}
+                className="group relative flex flex-col items-start p-6 rounded-2xl border border-slate-100 bg-white transition-all duration-300 ease-in-out hover:bg-emerald-600 cursor-pointer h-[240px] sm:h-[220px] lg:h-[240px] overflow-hidden"
+              >
+                {/* Icon Container */}
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors duration-300 group-hover:bg-emerald-500 group-hover:text-white">
+                  <IconComponent className="h-6 w-6" />
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-slate-800 transition-all duration-300 group-hover:text-white mb-2 group-hover:translate-y-[-4px]">
+                  {item.title}
+                </h3>
+
+                {/* Description (Now absolute-positioned to stop layout shifting) */}
+                <p className="absolute bottom-6 left-6 right-6 text-slate-600 text-sm opacity-0 translate-y-4 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:text-emerald-50">
+                  {item.desc}
+                </p>
               </div>
-              <h3 className="font-heading text-lg font-semibold text-[#1B3A5B] mb-2">{val.title}</h3>
-              <p className="text-[#3D6B8C] text-sm leading-relaxed">{val.desc}</p>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
+
+        {/* Countdown Area */}
+        <div className="mt-12 flex flex-col items-center justify-center border-t border-slate-200/60 pt-12">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0E8A57] bg-green-100 px-3 py-1 rounded-full mb-6">
+            Expedition Countdown
+          </p>
+          
+          {timeLeft.isExpired ? (
+            <div className="text-center font-heading font-bold text-[#1B3A5B] text-2xl">
+              The Expedition Has Begun!
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
+              {timeBlocks.map((block, idx) => (
+                <div key={idx} className="flex flex-col items-center">
+                  <div className="min-w-[65px] sm:min-w-[80px] bg-white text-[#0E8A57] font-bold text-xl sm:text-3xl p-3 rounded-xl text-center shadow-sm border border-slate-100">
+                    {block.value}
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-semibold text-[#3D6B8C] uppercase tracking-wider mt-2">
+                    {block.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
       </div>
     </section>
   );
