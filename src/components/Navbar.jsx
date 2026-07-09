@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { label: "Projects", path: "/projects" },
   { label: "Expedition", path: "/expedition" },
   { label: "Donate", path: "/donate" },
-  { label: "Apply", path: "/apply" },
 ];
 
 export default function Navbar() {
@@ -21,7 +20,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <Link to="/" className="font-heading text-xl font-semibold tracking-tight text-[#1B3A5B]">
-          Bridge of Light
+          Planet Pages Laos
         </Link>
 
         {/* Desktop */}

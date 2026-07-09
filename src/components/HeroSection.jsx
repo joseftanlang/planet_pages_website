@@ -42,7 +42,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-[#0E8A57] font-body text-sm font-semibold tracking-[0.2em] uppercase mb-6"
+          className="inline-block bg-green-100 text-[#0E8A57] px-3 py-1 rounded-full font-body text-sm font-semibold tracking-[0.2em] uppercase mb-6"
         >
           Singapore → Laos Youth Expedition 2026
         </motion.p>
@@ -51,7 +51,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight mb-6"
+          className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] mb-6"
         >
           Two Nations. <br className="hidden sm:block" />
           One Purpose.
@@ -60,9 +60,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="max-w-2xl mx-auto text-white/85 text-lg md:text-xl mb-10 font-light"
+          className="max-w-2xl mx-auto text-white text-lg md:text-xl font-normal drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-10"
         >
-          Bridge the distance between Singapore's innovation and Laos' enduring spirit.
+          Bridge the distance between Singapore's innovation and Laos' enduring spirit. <br className="hidden sm:block" /> <br className="hidden sm:block" />
           Build schools, empower communities, and discover the leader within.
         </motion.p>
         <motion.div
@@ -104,7 +104,7 @@ export default function HeroSection() {
             </div>
           ))}
         </motion.div>
-      </div>
+      </div> 
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10" aria-hidden="true">
