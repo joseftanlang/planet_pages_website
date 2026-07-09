@@ -93,10 +93,7 @@ export default function HeroSection() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
         >
           {[
-            { value: "8", label: "Years Running" },
-            { value: "320+", label: "Volunteers Sent" },
-            { value: "12", label: "Villages Reached" },
-            { value: "5,000+", label: "Lives Impacted" },
+            { },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-heading font-bold text-white">{stat.value}</div>
