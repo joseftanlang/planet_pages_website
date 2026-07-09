@@ -67,7 +67,9 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <p className="text-[#0E8A57] text-sm font-semibold tracking-[0.15em] uppercase mb-4">Impact Ledger</p>
+        <p className="inline-block bg-green-100 text-[#0E8A57] px-3 py-1 rounded-full text-sm font-semibold tracking-[0.2em] uppercase mb-6">
+          Impact Ledger
+        </p>
           <h2 id="projects-heading" className="text-3xl md:text-5xl font-heading font-bold text-white mb-4">
             Where your effort goes
           </h2>
