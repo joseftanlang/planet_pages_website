@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Base44 Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Use this repository to run and edit the app locally, then publish changes back through Base44.
 
-## Available Scripts
+Any change pushed to the repo will also be reflected in the Base44 Builder.
 
-In the project directory, you can run:
+## Prerequisites
 
-### `npm start`
+1. Clone the repository using the project's Git URL.
+2. Navigate to the project directory.
+3. Install dependencies: `npm install`.
+4. Install the Base44 CLI: `npm install -g base44@latest`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+See the [Base44 CLI docs](https://docs.base44.com/developers/references/cli/get-started/overview) if you want to run Base44 commands directly.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Run Locally
 
-### `npm test`
+Run the full local development environment from the project root:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+base44 dev
+```
 
-### `npm run build`
+`base44 dev` starts the local Base44 development backend and, when this app is configured for it, also starts the frontend dev server for you. Use the frontend URL printed by the command.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For example, when the Base44 project config includes a `serveCommand`, `base44 dev` can launch the frontend too:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```json5
+{
+  "site": {
+    "serveCommand": "npm run dev"
+  }
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In a Base44 project this lives in `base44/config.jsonc`.
 
-### `npm run eject`
+## Run Only The Frontend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If you only want to work on the frontend against the hosted Base44 backend, run:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm run dev
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Open the local URL printed by Vite.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Use The Hosted Backend
 
-## Learn More
+For frontend-only development, create or update `.env.local` in the project root:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+VITE_BASE44_APP_ID=your_app_id
+VITE_BASE44_APP_BASE_URL=https://your-app.base44.app
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`VITE_BASE44_APP_ID` identifies the Base44 app.
 
-### Code Splitting
+`VITE_BASE44_APP_BASE_URL` tells the Base44 Vite plugin where to send local `/api` requests. Point it at your deployed Base44 app URL when you want the local frontend to use the hosted backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+When you use `base44 dev`, the command injects the local Base44 values for you, so `.env.local` is mainly needed for frontend-only workflows.
 
-### Analyzing the Bundle Size
+## Publish Your Changes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+After pushing your changes to git, open the Base44 dashboard and publish the app:
 
-### Making a Progressive Web App
+```bash
+base44 dashboard open
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Docs & Support
 
-### Advanced Configuration
+Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Base44 CLI command reference: [https://docs.base44.com/developers/references/cli/commands/introduction](https://docs.base44.com/developers/references/cli/commands/introduction)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Support: [https://app.base44.com/support](https://app.base44.com/support)
