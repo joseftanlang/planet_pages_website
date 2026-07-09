@@ -42,7 +42,7 @@ export default function Footer() {
                 { label: "FAQs", href: "#apply" },
                 { label: "Safety & Insurance", href: "#expedition" },
                 { label: "Past Impact Reports", href: "#projects" },
-                { label: "Partner With Us", href: "mailto:partnerships@bridgeoflight.sg" },
+                { label: "Partner With Us", href: "mailto:planetpagesorg@gmail.com" },
               ].map((link) => (
                 <li key={link.label}>
                   <a href={link.href} className="text-white/60 hover:text-white transition-colors text-sm min-h-[44px] inline-flex items-center">
@@ -57,6 +57,11 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold tracking-wider uppercase text-white/40 mb-4">Get in Touch</h3>
             <ul className="space-y-3">
+              <li>
+                <a href="mailto:planetpagesorg@gmail.com" className="flex items-center gap-3 text-white/60 hover:text-white transition-colors text-sm min-h-[44px]">
+                  <Mail size={16} className="shrink-0" /> planetpagesorg@gmail.com
+                </a>
+              </li>
               <li>
                 <a href="mailto:tanjosef33@gmail.com" className="flex items-center gap-3 text-white/60 hover:text-white transition-colors text-sm min-h-[44px]">
                   <Mail size={16} className="shrink-0" /> tanjosef33@gmail.com
@@ -86,8 +91,8 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-white/30 text-sm">© 2026 Planet Pages Laos YEP. All rights reserved.</p>
           <div className="flex gap-6 text-sm">
-            <a href="mailto:hello@bridgeoflight.sg" className="text-white/30 hover:text-white/60 transition-colors min-h-[44px] inline-flex items-center">Privacy Policy</a>
-            <a href="mailto:hello@bridgeoflight.sg" className="text-white/30 hover:text-white/60 transition-colors min-h-[44px] inline-flex items-center">Terms of Service</a>
+            <a href="mailto:planetpagesorg@gmail.com" className="text-white/30 hover:text-white/60 transition-colors min-h-[44px] inline-flex items-center">Privacy Policy</a>
+            <a href="mailto:planetpagesorg@gmail.com" className="text-white/30 hover:text-white/60 transition-colors min-h-[44px] inline-flex items-center">Terms of Service</a>
           </div>
         </div>
       </div>
