@@ -33,10 +33,10 @@ export default function ExpeditionSection() {
         >
           <p className="text-[#0E8A57] text-sm font-semibold tracking-[0.15em] uppercase mb-4">The Expedition</p>
           <h2 id="expedition-heading" className="text-3xl md:text-5xl font-heading font-bold text-[#1B3A5B] mb-4">
-            14 days that change everything
+            10 days that change everything
           </h2>
           <p className="text-[#3D6B8C] max-w-xl mx-auto text-lg">
-            December 7–20, 2026. From Singapore to the mountains of northern Laos, here's what the journey looks like.
+            December 13–23, 2026. From Singapore to the mountains of northern Laos, here's what the journey looks like.
           </p>
         </motion.div>
 

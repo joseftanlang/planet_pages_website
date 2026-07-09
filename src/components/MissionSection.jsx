@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart, BookOpen, Users, Globe } from "lucide-react";
 
@@ -11,8 +11,52 @@ const VALUES = [
   { icon: Globe, title: "Cultural Exchange", desc: "The bridge goes both ways. Singaporean volunteers gain as much wisdom from Laos as they bring." },
 ];
 
-
 export default function MissionSection() {
+  // Set target date: 13th December 2026
+  const TARGET_DATE = new Date("2026-12-13T00:00:00").getTime();
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isExpired: false
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const difference = TARGET_DATE - now;
+
+      if (difference <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        isExpired: false
+      });
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, [TARGET_DATE]);
+
+  const formatNumber = (num) => String(num).padStart(2, "0");
+
+  const timeBlocks = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: formatNumber(timeLeft.hours) },
+    { label: "Mins", value: formatNumber(timeLeft.minutes) },
+    { label: "Secs", value: formatNumber(timeLeft.seconds) },
+  ];
+
   return (
     <section id="mission" className="py-24 md:py-32 bg-[#FDFCF8]" aria-labelledby="mission-heading">
       <div className="max-w-7xl mx-auto px-6">
@@ -68,33 +112,60 @@ export default function MissionSection() {
         </div>
 
         {/* Values grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-      {VALUES.map((item, index) => {
-        const IconComponent = item.icon;
-        
-        return (
-          <div 
-            key={index}
-            className="group relative flex flex-col items-start p-6 rounded-2xl border border-slate-100 bg-white transition-all duration-300 ease-in-out hover:bg-emerald-600 cursor-pointer min-h-[200px]"
-          >
-            {/* Icon Container */}
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors duration-300 group-hover:bg-emerald-500 group-hover:text-white">
-              <IconComponent className="h-6 w-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-16 pb-6">
+          {VALUES.map((item, index) => {
+            const IconComponent = item.icon;
+            
+            return (
+              <div 
+                key={index}
+                className="group relative flex flex-col items-start p-6 rounded-2xl border border-slate-100 bg-white transition-all duration-300 ease-in-out hover:bg-emerald-600 cursor-pointer min-h-[200px]"
+              >
+                {/* Icon Container */}
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors duration-300 group-hover:bg-emerald-500 group-hover:text-white">
+                  <IconComponent className="h-6 w-6" />
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-slate-800 transition-colors duration-300 group-hover:text-white mb-2">
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-slate-600 opacity-0 max-h-0 translate-y-2 overflow-hidden transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:max-h-[150px] group-hover:translate-y-0 group-hover:text-emerald-50">
+                  {item.desc}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Countdown Area */}
+        <div className="mt-12 flex flex-col items-center justify-center border-t border-slate-200/60 pt-12">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0E8A57] bg-green-100 px-3 py-1 rounded-full mb-6">
+            Expedition Countdown
+          </p>
+          
+          {timeLeft.isExpired ? (
+            <div className="text-center font-heading font-bold text-[#1B3A5B] text-2xl">
+              The Expedition Has Begun!
             </div>
+          ) : (
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
+              {timeBlocks.map((block, idx) => (
+                <div key={idx} className="flex flex-col items-center">
+                  <div className="min-w-[65px] sm:min-w-[80px] bg-white text-[#0E8A57] font-bold text-xl sm:text-3xl p-3 rounded-xl text-center shadow-sm border border-slate-100">
+                    {block.value}
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-semibold text-[#3D6B8C] uppercase tracking-wider mt-2">
+                    {block.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
-            {/* Title */}
-            <h3 className="text-xl font-semibold text-slate-800 transition-colors duration-300 group-hover:text-white mb-2">
-              {item.title}
-            </h3>
-
-            {/* Description (Hidden by default, smoothly fades/slides up on hover) */}
-            <p className="text-slate-600 opacity-0 max-h-0 translate-y-2 overflow-hidden transition-all duration-3000 ease-in-out group-hover:opacity-100 group-hover:max-h-[150px] group-hover:translate-y-0 group-hover:text-emerald-50">
-              {item.desc}
-            </p>
-          </div>
-        );
-      })}
-    </div>
       </div>
     </section>
   );
