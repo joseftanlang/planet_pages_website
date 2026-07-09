@@ -7,9 +7,10 @@ const COMMUNITY_IMG = "https://media.base44.com/images/public/6a4f119cb0e4023a4c
 const VALUES = [
   { icon: Heart, title: "Empathy First", desc: "We lead with understanding, not assumption. Every project starts by listening to the community's own vision." },
   { icon: BookOpen, title: "Sustainable Learning", desc: "We build capacity, not dependency. Our education programmes train local teachers to carry forward." },
-  { icon: Users, title: "Youth Leadership", desc: "Volunteers don't just serve — they grow. Our programme shapes future civic leaders through immersive fieldwork." },
+  { icon: Users, title: "Youth Leadership", desc: "Volunteers don't just serve, they also grow. Our programme shapes future civic leaders through immersive fieldwork." },
   { icon: Globe, title: "Cultural Exchange", desc: "The bridge goes both ways. Singaporean volunteers gain as much wisdom from Laos as they bring." },
 ];
+
 
 export default function MissionSection() {
   return (
@@ -32,14 +33,14 @@ export default function MissionSection() {
             </h2>
             <p className="text-[#3D6B8C] text-lg leading-relaxed mb-6">
               The Planet Pages Laos Youth Expedition Project is a Singaporean volunteer initiative
-              that partners with rural communities in Laos to co-create lasting change. Since 2018,
-              we've sent interdisciplinary teams of university students to work alongside Laotian
+              that partners with rural communities in Laos to co-create lasting change. 2026 marks the first year of the programme that
+              we are sending interdisciplinary teams of tertiary-level youths to work alongside Laotian
               villagers on education, infrastructure, and clean-water projects.
             </p>
             <p className="text-[#3D6B8C] text-lg leading-relaxed">
               This isn't voluntourism. It's a structured, community-led programme where every
               project is identified, designed, and sustained by the people it serves. We provide
-              the hands, the funding, and the technical skill — they provide the knowledge,
+              the hands, the funding, and the technical skill while they provide the knowledge,
               the vision, and the cultural grounding.
             </p>
           </motion.div>
@@ -67,24 +68,33 @@ export default function MissionSection() {
         </div>
 
         {/* Values grid */}
-        <div className="mt-24 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {VALUES.map((val, i) => (
-            <motion.div
-              key={val.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white rounded-xl p-6 border border-[#3D6B8C]/10 hover:shadow-lg transition-shadow"
-            >
-              <div className="w-12 h-12 rounded-full bg-[#0E8A57]/10 flex items-center justify-center mb-4">
-                <val.icon size={22} className="text-[#0E8A57]" />
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-[#1B3A5B] mb-2">{val.title}</h3>
-              <p className="text-[#3D6B8C] text-sm leading-relaxed">{val.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+      {VALUES.map((item, index) => {
+        const IconComponent = item.icon;
+        
+        return (
+          <div 
+            key={index}
+            className="group relative flex flex-col items-start p-6 rounded-2xl border border-slate-100 bg-white transition-all duration-300 ease-in-out hover:bg-emerald-600 cursor-pointer min-h-[200px]"
+          >
+            {/* Icon Container */}
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors duration-300 group-hover:bg-emerald-500 group-hover:text-white">
+              <IconComponent className="h-6 w-6" />
+            </div>
+
+            {/* Title */}
+            <h3 className="text-xl font-semibold text-slate-800 transition-colors duration-300 group-hover:text-white mb-2">
+              {item.title}
+            </h3>
+
+            {/* Description (Hidden by default, smoothly fades/slides up on hover) */}
+            <p className="text-slate-600 opacity-0 max-h-0 translate-y-2 overflow-hidden transition-all duration-3000 ease-in-out group-hover:opacity-100 group-hover:max-h-[150px] group-hover:translate-y-0 group-hover:text-emerald-50">
+              {item.desc}
+            </p>
+          </div>
+        );
+      })}
+    </div>
       </div>
     </section>
   );
