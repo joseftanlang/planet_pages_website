@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Plane, MapPin, Calendar, Clock, Users, Camera, Stethoscope, Wrench } from "lucide-react";
 
@@ -102,12 +103,12 @@ export default function ExpeditionSection() {
             })}
           </div>
           <div className="text-center mt-8">
-            <a
-              href="#apply"
+            <Link
+              to="/apply"
               className="inline-flex items-center justify-center px-8 py-3.5 bg-[#0E8A57] text-white font-semibold rounded-full hover:bg-[#0A7045] transition-colors min-h-[44px]"
             >
               Fill a Spot — Apply Now
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

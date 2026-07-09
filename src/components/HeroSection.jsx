@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const SG_IMG = "https://media.base44.com/images/public/6a4f119cb0e4023a4c028f3f/6fa84fa77_generated_0fd02299.png";
@@ -70,18 +71,18 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.45 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a
-            href="#apply"
+          <Link
+            to="/apply"
             className="inline-flex items-center justify-center px-8 py-4 bg-[#0E8A57] text-white font-semibold rounded-full hover:bg-[#0A7045] transition-colors text-base min-h-[44px] shadow-lg shadow-[#0E8A57]/30"
           >
             Join the Expedition
-          </a>
-          <a
-            href="#projects"
+          </Link>
+          <Link
+            to="/projects"
             className="inline-flex items-center justify-center px-8 py-4 bg-white/15 text-white font-semibold rounded-full hover:bg-white/25 transition-colors text-base min-h-[44px] backdrop-blur-sm border border-white/20"
           >
             Explore Our Impact
-          </a>
+          </Link>
         </motion.div>
 
         {/* Stats bar */}
