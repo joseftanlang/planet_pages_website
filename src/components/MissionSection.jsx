@@ -119,7 +119,7 @@ export default function MissionSection() {
             return (
               <div 
                 key={index}
-                className="group relative flex flex-col items-start p-6 rounded-2xl border border-slate-100 bg-white transition-all duration-300 ease-in-out hover:bg-emerald-600 cursor-pointer min-h-[200px]"
+                className="group relative flex flex-col items-start p-6 rounded-2xl border border-slate-100 bg-white transition-all duration-300 ease-in-out hover:bg-emerald-600 cursor-pointer h-[240px] sm:h-[220px] lg:h-[240px] overflow-hidden"
               >
                 {/* Icon Container */}
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors duration-300 group-hover:bg-emerald-500 group-hover:text-white">
@@ -127,12 +127,12 @@ export default function MissionSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-semibold text-slate-800 transition-colors duration-300 group-hover:text-white mb-2">
+                <h3 className="text-xl font-semibold text-slate-800 transition-all duration-300 group-hover:text-white mb-2 group-hover:translate-y-[-4px]">
                   {item.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-slate-600 opacity-0 max-h-0 translate-y-2 overflow-hidden transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:max-h-[150px] group-hover:translate-y-0 group-hover:text-emerald-50">
+                {/* Description (Now absolute-positioned to stop layout shifting) */}
+                <p className="absolute bottom-6 left-6 right-6 text-slate-600 text-sm opacity-0 translate-y-4 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:text-emerald-50">
                   {item.desc}
                 </p>
               </div>
