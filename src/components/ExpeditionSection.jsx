@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Plane, MapPin, Calendar, Clock, Users, Camera, Stethoscope, Wrench } from "lucide-react";
@@ -19,6 +19,51 @@ const SKILLS_NEEDED = [
 ];
 
 export default function ExpeditionSection() {
+  // Set target date: 13th December 2026
+  const TARGET_DATE = new Date("2026-12-13T00:00:00").getTime();
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isExpired: false
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const difference = TARGET_DATE - now;
+
+      if (difference <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true });
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        isExpired: false
+      });
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, [TARGET_DATE]);
+
+  const formatNumber = (num) => String(num).padStart(2, "0");
+
+  const timeBlocks = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: formatNumber(timeLeft.hours) },
+    { label: "Mins", value: formatNumber(timeLeft.minutes) },
+    { label: "Secs", value: formatNumber(timeLeft.seconds) },
+  ];
+
   return (
     <section id="expedition" className="py-24 md:py-32 bg-[#FDFCF8]" aria-labelledby="expedition-heading">
       <div className="max-w-7xl mx-auto px-6">
@@ -29,9 +74,35 @@ export default function ExpeditionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-20 flex flex-col items-center"
         >
-          <p className="text-[#0E8A57] text-sm font-semibold tracking-[0.15em] uppercase mb-4">The Expedition</p>
+          <p className="text-[#0E8A57] text-sm font-semibold tracking-[0.15em] uppercase mb-6">The Expedition</p>
+          
+          {/* Live Countdown Timer Element */}
+          <div className="mb-8">
+            {timeLeft.isExpired ? (
+              <div className="text-center font-heading font-bold text-[#0E8A57] bg-green-100 px-4 py-2 rounded-full text-base tracking-wide uppercase">
+                The Journey Has Begun!
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-2 sm:gap-3 bg-green-50/50 p-2.5 sm:p-3 rounded-2xl border border-emerald-100/50 shadow-inner">
+                {timeBlocks.map((block, idx) => (
+                  <div key={idx} className="flex items-center gap-1 sm:gap-2 px-1">
+                    <div className="min-w-[42px] sm:min-w-[52px] bg-white text-[#0E8A57] font-bold text-lg sm:text-xl p-1.5 sm:p-2 rounded-xl text-center shadow-sm border border-slate-100">
+                      {block.value}
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-bold text-[#3D6B8C] uppercase tracking-wider">
+                      {block.label.toLowerCase()}
+                    </span>
+                    {idx < timeBlocks.length - 1 && (
+                      <span className="text-[#0E8A57]/30 font-bold ml-1 sm:ml-2">:</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           <h2 id="expedition-heading" className="text-3xl md:text-5xl font-heading font-bold text-[#1B3A5B] mb-4">
             10 days that change everything
           </h2>
