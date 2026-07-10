@@ -13,6 +13,7 @@ import Expedition from './pages/Expedition';
 import Donate from './pages/Donate';
 import Apply from './pages/Apply';
 import Layout from './components/Layout';
+import Merch from './pages/Merch';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -48,6 +49,7 @@ const AuthenticatedApp = () => {
         <Route path="/expedition" element={<Expedition />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/apply" element={<Apply />} />
+        <Route path="/merch" element={<Merch />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
