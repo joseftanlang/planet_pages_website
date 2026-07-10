@@ -408,18 +408,8 @@ export default function MergeBooth() {
             </div>
 
             <div className="flex items-center gap-4">
-              {/* CART BUTTON - BIGGER AND MORE VISIBLE */}
-              <button
-                onClick={() => setShowCart(true)}
-                className="relative bg-gradient-to-r from-purple-600 to-blue-500 hover:shadow-lg text-white px-4 py-2 rounded-lg transition-all flex items-center gap-2 font-medium"
-              >
-                <ShoppingCart className="w-5 h-5" />
-                <span className="hidden sm:inline">Cart</span>
-                {totalItems > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold animate-pulse border-2 border-white">
-                    {totalItems}
-                  </span>
-                )}
+              <button className="hidden md:block px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all">
+                New Arrivals
               </button>
             </div>
           </div>
@@ -625,6 +615,29 @@ export default function MergeBooth() {
           </div>
         )}
       </main>
+
+      {/* FLOATING CART BUTTON - BOTTOM RIGHT */}
+      <motion.button
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setShowCart(true)}
+        className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-blue-500 text-white p-4 rounded-full shadow-2xl hover:shadow-xl transition-all"
+      >
+        <div className="relative">
+          <ShoppingCart className="w-7 h-7" />
+          {totalItems > 0 && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold border-2 border-white"
+            >
+              {totalItems}
+            </motion.span>
+          )}
+        </div>
+      </motion.button>
 
       {/* Cart Sidebar */}
       <AnimatePresence>
