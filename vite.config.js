@@ -4,6 +4,11 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Set base path for GitHub Pages - replace with your repo name
+  base: process.env.GITHUB_PAGES === 'true' 
+    ? '/planet_pages_website/'  // Your repo name
+    : '/',
+  
   plugins: [
     base44({
       // Support for legacy code that imports the base44 SDK with @/integrations, @/entities, etc.
@@ -12,8 +17,10 @@ export default defineConfig({
       hmrNotifier: true,
       navigationNotifier: true,
       analyticsTracker: true,
-      visualEditAgent: true
+      visualEditAgent: true,
+      // Disable Base44 features when building for GitHub Pages
+      enabled: process.env.GITHUB_PAGES !== 'true'
     }),
     react(),
   ]
-});
+})

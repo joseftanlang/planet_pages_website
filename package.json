@@ -75,6 +75,7 @@
     "lint": "eslint . --quiet",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc -p ./jsconfig.json",
+    "build:gh-pages": "GITHUB_PAGES=true vite build",
     "preview": "vite preview"
   },
   "eslintConfig": {
