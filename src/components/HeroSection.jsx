@@ -53,8 +53,8 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] mb-6"
         >
-          Two Nations. <br className="hidden sm:block" />
-          One Purpose.
+          ASEAN NATION <br className="hidden sm:block" />
+          One Purpose
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
